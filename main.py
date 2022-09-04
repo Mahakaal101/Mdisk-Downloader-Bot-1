@@ -32,9 +32,9 @@ def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
                     InlineKeyboardButton(
                         "Source code ⚡", url="https://github.com/Clinton-Abraham/UPLOADER-BOT"
                     ),
-                    InlineKeyboardButton("Project Channel 👨🏻‍💻", url="https://t.me/Space_X_bots"),
+                    InlineKeyboardMarkup("Project Channel 👨🏻‍💻", url="https://t.me/Space_X_bots"),
                 ],
-                [InlineKeyboardButton("Developer 👨‍⚖️", url="https://t.me/clinton_abraham")],
+                [InlineKeyboardMarkup("Developer 👨‍⚖️", url="https://t.me/clinton_abraham")],
             ]
         )
 
