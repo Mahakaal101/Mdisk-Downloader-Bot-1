@@ -29,7 +29,7 @@ def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
     reply_markup=InlineKeyboardMarkup(
       [
                 [
-                    InlineKeyboardButton(
+                    InlineKeyboardMarkup(
                         "Source code ⚡", url="https://github.com/Clinton-Abraham/UPLOADER-BOT"
                     ),
                     InlineKeyboardMarkup("Project Channel 👨🏻‍💻", url="https://t.me/Space_X_bots"),
