@@ -38,7 +38,7 @@ def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
             ]
         )
 
-# help command
+help command
 @app.on_message(filters.command(["help"]))
 def help(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     helpmessage = """__**/start** - basic usage
