@@ -26,7 +26,7 @@ app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
 @app.on_message(filters.command(["start"]))
 def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     app.send_message(message.chat.id, '**Hi, I am Mdisk Video Downloader, you can watch Videos without MX Player.\n__Send me a link to Start...__**',reply_to_message_id=message.id,
-    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Source Code", url="https://github.com/bipinkrish/Mdisk-Downloader-Bot")]]))
+    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Updates Channel", url="t.me/anumitultrabots")]]))
 #help command
 @app.on_message(filters.command(["help"]))
 def help(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
