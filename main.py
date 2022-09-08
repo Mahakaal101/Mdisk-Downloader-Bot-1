@@ -32,18 +32,18 @@ ban = os.environ.get("BAN", "")
 def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
 
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id,reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Source Code", url="https://github.com/bipinkrish/Mdisk-Downloader-Bot")]]))
+        app.send_message(message.chat.id, '__You are either not **Authorized** or **Contact @Aaajaats To Use this bot**__',reply_to_message_id=message.id,reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Update Channel", url="https://t.me/anumitultrabots")]]))
         return
 
     app.send_message(message.chat.id, '**Hi, I am Mdisk Video Downloader, you can watch Videos without MX Player.\n__Send me a link to Start...__**',reply_to_message_id=message.id,
-    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Source Code", url="https://github.com/bipinkrish/Mdisk-Downloader-Bot")]]))
+    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Update Channel", url="https://t.me/anumitultrabots")]]))
 
 # help command
 @app.on_message(filters.command(["help"]))
 def help(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__You are either not **Authorized** or **Contact @Aaajaats To Use this bot**__',reply_to_message_id=message.id)
         return
     
     helpmessage = """__**/start** - basic usage
