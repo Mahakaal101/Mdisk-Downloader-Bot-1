@@ -43,7 +43,6 @@ def help(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
     
     if not checkuser(message):
         app.send_message(message.chat.id, 'You Don't buy Subscription For Plans Details Please Contact To @Aaajaats__',reply_to_message_id=message.id)
-        return
     
     helpmessage = """__**/start** - basic usage
 **/help** - this message
