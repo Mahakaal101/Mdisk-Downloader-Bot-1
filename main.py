@@ -42,7 +42,7 @@ def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
 def help(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, 'You Don't buy Subscription For Plans Details Please Contact To @Aaajaats__',reply_to_message_id=message.id)
+app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
     
     helpmessage = """__**/start** - basic usage
 **/help** - this message
