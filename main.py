@@ -216,7 +216,7 @@ def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_a
 def thumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me l__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
         return
 
     try:
