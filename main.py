@@ -32,7 +32,7 @@ ban = os.environ.get("BAN", "")
 def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
 
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Contact @Aaajats To Use this bot**__',reply_to_message_id=message.id,reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Update Channel", url="https://t.me/anumitultrabots")]]))
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id,reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Update Channel", url="https://t.me/anumitultrabots")]]))
         return
 
     app.send_message(message.chat.id, '**Hi, I am Mdisk Video Downloader, you can watch Videos without MX Player.\n__Send me a link to Start...__**',reply_to_message_id=message.id,
@@ -43,7 +43,7 @@ def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
 def help(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Contact @Aaajats To Use this bot**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
         return
     
     helpmessage = """__**/start** - basic usage
@@ -196,7 +196,7 @@ def down(message,link):
 def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
         return
 
     try:
@@ -216,7 +216,7 @@ def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_a
 def thumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me l__',reply_to_message_id=message.id)
         return
 
     try:
@@ -238,7 +238,7 @@ def thumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_m
 def showthumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
         return
     
     if os.path.exists(f'{message.from_user.id}-thumb.jpg'):
@@ -252,7 +252,7 @@ def showthumb(client: pyrogram.client.Client, message: pyrogram.types.messages_a
 def removethumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
         return
     
     
@@ -268,7 +268,7 @@ def removethumb(client: pyrogram.client.Client, message: pyrogram.types.messages
 def ptumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
         return
     
     file = app.download_media(message)
@@ -281,7 +281,7 @@ def ptumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_m
 def change(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
         return
     
     info = extras.getdata(str(message.from_user.id))
@@ -305,7 +305,7 @@ def multilinks(message,links):
 def mdisktext(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__You are either not **Authorized** or **Banned**__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me __',reply_to_message_id=message.id)
         return
 
     if "https://mdisk.me/" in message.text:
