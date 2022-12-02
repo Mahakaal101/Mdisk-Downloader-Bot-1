@@ -29,15 +29,27 @@ ban = os.environ.get("BAN", "")
 
 # start command
 @app.on_message(filters.command(["start"]))
-def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
-
-    if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id,reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Update Channel", url="https://t.me/anumitultrabots")]]))
-        return
-
-    app.send_message(message.chat.id, '**Hi, I am Mdisk Video Downloader, you can watch Videos without MX Player.\n__Send me a link to Start...__**',reply_to_message_id=message.id,
-    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("📦 Update Channel", url="https://t.me/anumitultrabots")]]))
-
+async def start(client,message):
+ old = insert(int(message.chat.id))
+ try:
+     id = message.text.split(' ')[1]
+ except:
+     await message.reply_text(text =f"""
+ Hello  {message.from_user.first_name }\n
+ __I am Paid Mdisk Downloader bot,\n
+ you can watch videos with MX Player__
+ """,reply_to_message_id = message.id ,  
+ reply_markup=InlineKeyboardMarkup( [[
+           InlineKeyboardButton("👼 𝙳𝙴𝚅𝚂 👼", url='https://t.me/Aaajats')
+           ],[
+           InlineKeyboardButton('📢 𝚄𝙿𝙳𝙰𝚃𝙴𝚂', url='https://t.me/anumitultrabots'),
+           InlineKeyboardButton('🍂 𝚂𝚄𝙿𝙿𝙾𝚁𝚃', url='https://t.me/anumitultrabots')
+           ],[
+           InlineKeyboardButton('🍃 𝙰𝙱𝙾𝚄𝚃', callback_data='about'),
+           InlineKeyboardButton('ℹ️ Subscribe 🧐', url='https://youtube.com/@anumitultrabots')
+           ]]
+          )
+       )
 # help command
 @app.on_message(filters.command(["help"]))
 def help(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
