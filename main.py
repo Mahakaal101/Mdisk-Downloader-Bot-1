@@ -7,12 +7,26 @@ import pyrogram
 from pyrogram import Client
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
-
+from pyrogram.errors import FloodWait
+import asyncio
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
+from pyrogram.types import ( InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
+import humanize
+from upgrade import upgrade
 import mdisk
 import extras
 import mediainfo
 import split
 from split import TG_SPLIT_SIZE
+import datetime
+from datetime import timedelta, date ,datetime
+from datetime import date as date_
+from helper.progress import humanbytes
+from helper.date import add_date ,check_expi
+from pyrogram.file_id import FileId
+from helper.database import daily as daily_ ,uploadlimit,usertype,addpre,find_one,used_limit,getid,delete,insert,find_one,usertype,addpredata
+ADMIN = int(os.environ.get("ADMIN", 5410723702))
+from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 
 
 # app
@@ -23,23 +37,24 @@ app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
 
 
 # optionals
-auth = os.environ.get("AUTH", "623741973,1864861524,5076949930,5215205205,1787835645,306027849,683684279,1406840926,597718002,1843393081,5316294458,721234444,5290630238,839291568,598394386,1606667548,1740456929,5634994558,1764976688,1051220816,5410723702,1335978271,1845343032,507644392,1198027788,5058416849,631028443,1740456929,5674356680,2083663200,5515158923,1057959919,941092630,5397438805,809970451,859879486,1667559069,1416735571,1839169012,489077790,1324651168,1315696271,240296058,5104293442,5372705569,904971137,5094522871,2035698505,635819536,5135693898")
+auth = os.environ.get("AUTH", "623741973,1864861524,5076949930,5215205205,1787835645,306027849,683684279,1406840926,597718002,1843393081,5316294458,721234444,5290630238,839291568,598394386,1606667548,1740456929,5634994558,1764976688,1051220816,915679851,5410723702,1335978271,1845343032,1252277288,5226656959,507644392,1198027788,981149750,5058416849,5016754348,904971137,1911731554,1838349598,631028443,1740456929,5674356680,2083663200,5515158923,1057959919,941092630,5397438805,809970451,859879486")
 ban = os.environ.get("BAN", "")
 
 
 # start command
 @app.on_message(filters.command(["start"]))
 async def start(client,message):
- old = insert(int(message.chat.id))
- try:
-     id = message.text.split(' ')[1]
- except:
-     await message.reply_text(text =f"""
- Hello  {message.from_user.first_name }\n
- __I am Paid Mdisk Downloader bot,\n
- you can watch videos with MX Player__
- """,reply_to_message_id = message.id ,  
- reply_markup=InlineKeyboardMarkup( [[
+	old = insert(int(message.chat.id))
+	try:
+	    id = message.text.split(' ')[1]
+	except:
+	    await message.reply_text(text =f"""
+Hi {message.from_user.first_name } 👋
+I'm Paid Mdisk Uploader Bot 🚀\nPermanent Thumbnail Support💯\n
+Send me a Mdisk link and \nI will upload it to telegram as a file/video.\n
+Please /upgrade Your Subscription
+	""",reply_to_message_id = message.id ,  
+	reply_markup=InlineKeyboardMarkup( [[
            InlineKeyboardButton("👼 𝙳𝙴𝚅𝚂 👼", url='https://t.me/Aaajats')
            ],[
            InlineKeyboardButton('📢 𝚄𝙿𝙳𝙰𝚃𝙴𝚂', url='https://t.me/anumitultrabots'),
@@ -50,24 +65,125 @@ async def start(client,message):
            ]]
           )
        )
-# help command
-@app.on_message(filters.command(["help"]))
-def help(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
+
+# upgrade command
+@app.on_message(filters.command(["upgrade"]))
+async def start(client,message):
+	await message.reply_text(text =f"""
+	Hello \n
+	🛡️ PLAN 🛡️\n
+	🌸Daily  Upload  limit Unlimited\n
+	🌸Price Rs 40 🇮🇳/🌎 1$  per Month__
+	
+	💸Pay Using Upi I'd ultrabots.famc@idfcbank\n
+	💸After Payment Send Screenshots Of\nPayment To Admin
+	""",reply_to_message_id = message.id ,  
+	reply_markup=InlineKeyboardMarkup([[ 
+        			InlineKeyboardButton("ADMIN 🛂",url = "https://t.me/Aaajats")], 
+        			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4405")],
+		                [InlineKeyboardButton("Cancel",callback_data = "cancel")  ]])
+       )
     
-    if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
-        return
-    
-    helpmessage = """__**/start** - basic usage
-**/help** - this message
-**/mdisk mdisklink** - usage
-**/thumb** - reply to a image document of size less than 200KB to set it as Thumbnail ( you can also send image as a photo to set it as Thumbnail automatically )
-**/remove** - remove Thumbnail
-**/show** - show Thumbnail
-**/change** - change upload mode ( default mode is Document )__"""
-    app.send_message(message.chat.id, helpmessage, reply_to_message_id=message.id)
+#plans command
+@app.on_message(filters.private & filters.command(["plans"]))
+async def start(client,message):
+	await message.reply_text("""
+	PAID PLANS AVAILABLE\n
+	🛡️ PLAN 🛡️\n
+	🌸Daily  Upload  limit Unlimited
+	🌸Price Rs 40 🇮🇳/🌎 1$  per Month__
+	🌸No Timeout\n
+Please /upgrade your subscription
+	""")
+	               
+
+#addpremium user
+
+@app.on_message(filters.private & filters.user(ADMIN) & filters.command(["addpremium"]))
+async def buypremium(bot, message):
+	await message.reply_text("Select Plan.........",quote=True,reply_markup=InlineKeyboardMarkup([[ 
+        			InlineKeyboardButton("VIP 1",callback_data = "vip1"), 
+        			InlineKeyboardButton("VIP 2",callback_data = "vip2") ]]))
+        			
+
+@app.on_callback_query(filters.regex('vip1'))
+async def vip1(bot,update):
+	id = update.message.reply_to_message.text.split("/addpremium")
+	user_id = id[1].replace(" ", "")
+	inlimit  = 21474836480
+	uploadlimit(int(user_id),21474836480)
+	usertype(int(user_id),"VIP1")
+	addpre(int(user_id))
+	await update.message.edit("Added successfully To Premium Upload limit 20 GB")
+	await bot.send_message(user_id,"Hey Ur Upgraded To VIP 1 check your plan here /myplan")
+
+@app.on_callback_query(filters.regex('vip2'))
+async def vip2(bot,update):
+	id = update.message.reply_to_message.text.split("/addpremium")
+	user_id = id[1].replace(" ", "")
+	inlimit  = 107374182400
+	uploadlimit(int(user_id),107374182400)
+	usertype(int(user_id),"VIP2")
+	addpre(int(user_id))
+	await update.message.edit("Added successfully To Premium Upload limit 100 GB")
+	await bot.send_message(user_id,"Hey Ur Upgraded To VIP 2 check your plan here /myplan")
+	
+#broadcast
+@app.on_message(filters.private & filters.user(ADMIN) & filters.command(["broadcast"]))
+async def broadcast(bot, message):
+ if (message.reply_to_message):
+   ms = await message.reply_text("Geting All ids from database ...........")
+   ids = getid()
+   tot = len(ids)
+   success = 0 
+   failed = 0 
+   await ms.edit(f"Starting Broadcast .... \n Sending Message To {tot} Users")
+   for id in ids:
+     try:
+     	time.sleep(1)
+     	await message.reply_to_message.copy(id)
+     	success += 1 
+     except:
+     	failed += 1
+     	delete({"_id":id})     	 
+     	pass
+     try:
+     	await ms.edit( f"Message sent to {success} chat(s). {failed} chat(s) failed on receiving message. \nTotal - {tot}" )
+     except FloodWait as e:
+     	await asyncio.sleep(t.x)
 
 
+# my plan
+
+@app.on_message(filters.private & filters.command(["myplan"]))
+async def start(client,message):
+	used_ = find_one(message.from_user.id)	
+	daily = used_["daily"]
+	expi = daily - int(time.mktime(time.strptime(str(date_.today()), '%Y-%m-%d')))
+	if expi != 0:
+	     today = date_.today()
+	     pattern = '%Y-%m-%d'
+	     epcho = int(time.mktime(time.strptime(str(today), pattern)))
+	     daily_(message.from_user.id,epcho)
+	     used_limit(message.from_user.id,0)
+	_newus = find_one(message.from_user.id)
+	used = _newus["used_limit"]
+	limit = _newus["uploadlimit"]
+	remain = int(limit)- int(used)
+	user =  _newus["usertype"]
+	ends = _newus["prexdate"]
+	if ends == None:
+	    text = f"User ID:- ```{message.from_user.id}```\nPlan :- {user}\nDaly Upload Limit :- {humanbytes(limit)}\nToday Used :- {humanbytes(used)}\nRemain:- {humanbytes(remain)}"
+	else:
+	    normal_date = datetime.fromtimestamp(ends).strftime('%Y-%m-%d')
+	    text = f"User ID:- ```{message.from_user.id}```\nPlan :- {user}\nDaly Upload Limit :- {humanbytes(limit)}\nToday Used :- {humanbytes(used)}\nRemain:- {humanbytes(remain)}\n\n```Your Plan Ends On :- {normal_date}"
+	    
+	if user == "Free":
+	    await message.reply(text,quote = True,reply_markup = InlineKeyboardMarkup([[       			InlineKeyboardButton("Upgrade 💰💳",callback_data = "upgrade"), InlineKeyboardButton("Cancel ✖️ ",callback_data = "cancel") ]]))
+	else:
+	    await message.reply(text,quote=True)
+
+			 
 # check for user access
 def checkuser(message):
     if auth != "" or ban != "":
@@ -103,7 +219,11 @@ def status(folder,message,fsize):
             time.sleep(10)
         except:
             time.sleep(5)
+#about
 
+@app.on_message(filters.private & filters.command(["about"]))
+async def start(client,message):
+	await message.reply_text("📛 My Name : @renamerprov2_bot\n\n👨‍💻Creater :- @ajak4405\n\n🧿 Language :Python 3.10.8\n\n📢 Framework :Pyrogram 2.0.63\n\n🤖 Bot Server : VPS")
 
 # upload status
 def upstatus(statusfile,message):
