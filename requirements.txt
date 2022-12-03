@@ -2,4 +2,7 @@ pyrogram
 tgcrypto
 requests
 Pillow
-
+pymongo
+dnspython
+asyncio
+humanize
