@@ -334,7 +334,10 @@ def down(message,link):
 def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, """
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
 
     try:
@@ -354,7 +357,10 @@ def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_a
 def thumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, """
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
 
     try:
@@ -376,7 +382,10 @@ def thumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_m
 def showthumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, """
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
     
     if os.path.exists(f'{message.from_user.id}-thumb.jpg'):
@@ -390,7 +399,10 @@ def showthumb(client: pyrogram.client.Client, message: pyrogram.types.messages_a
 def removethumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, """
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
     
     
@@ -406,7 +418,10 @@ def removethumb(client: pyrogram.client.Client, message: pyrogram.types.messages
 def ptumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, """
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
     
     file = app.download_media(message)
@@ -419,7 +434,10 @@ def ptumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_m
 def change(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me__',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, """
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
     
     info = extras.getdata(str(message.from_user.id))
@@ -443,7 +461,10 @@ def multilinks(message,links):
 def mdisktext(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
-        app.send_message(message.chat.id, '__Hello 👋\n\nI am a premium bot please contact my owner @Aaajats to use me __',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, """
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
 
     if "https://mdisk.me/" in message.text:
