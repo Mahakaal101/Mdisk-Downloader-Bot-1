@@ -30,19 +30,19 @@ from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,ForceRepl
 
 
 # app
-bot_token = os.environ.get("TOKEN", "5562266381:AAGY7bhPnRC62qbYegRxnCGSo6eUQPlx_OI") 
+bot_token = os.environ.get("TOKEN", "5953337678:AAF_thoIHSNewztUnvA--rs95At2BCs-wq8") 
 api_hash = os.environ.get("HASH", "ad762fe0516f367115ba651d929cf429") 
 api_id = os.environ.get("ID", "17737898")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
 
 
 # optionals
-auth = os.environ.get("AUTH", "623741973,1864861524,5076949930,5215205205,1787835645,306027849,683684279,1406840926,1667559069,597718002,1843393081,5316294458,721234444,5290630238,839291568,598394386,1606667548,1740456929,5634994558,1764976688,1051220816,915679851,5410723702,1335978271,1845343032,1252277288,5226656959,507644392,1198027788,981149750,5058416849,5016754348,904971137,1911731554,1838349598,631028443,1740456929,5674356680,2083663200,5515158923,1057959919,941092630,5397438805,809970451,859879486,1303200779,1324651168,240296058,1252277288,635819536")
+auth = os.environ.get("AUTH", "623741973,1864861524,5076949930,5215205205,1787835645,306027849,683684279,1406840926,597718002,1843393081,5316294458,721234444,5290630238,839291568,598394386,1606667548,1740456929,5634994558,1764976688,1051220816,915679851,5410723702,1335978271,1845343032,1252277288,5226656959,507644392,1198027788,981149750,5058416849,5016754348,904971137,1911731554,1838349598,631028443,1740456929,5674356680,2083663200,5515158923,1057959919,941092630,5397438805,809970451,859879486")
 ban = os.environ.get("BAN", "")
 
 
 # start command
-@app.on_message(filters.command(["start"]))
+@app.on_message(filters.private & filters.command(["start"]))
 async def start(client,message):
 	old = insert(int(message.chat.id))
 	try:
@@ -67,7 +67,7 @@ Please /upgrade Your Subscription
        )
 
 # upgrade command
-@app.on_message(filters.command(["upgrade"]))
+@app.on_message(filters.private & filters.command(["upgrade"]))
 async def start(client,message):
 	await message.reply_text(text =f"""
 	Hello \n
@@ -81,16 +81,10 @@ async def start(client,message):
 	""",reply_to_message_id = message.id ,  
 	reply_markup=InlineKeyboardMarkup([[ 
         			InlineKeyboardButton("ADMIN 🛂",url = "https://t.me/Aaajats")], 
-        			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4406")],
+        			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4405")],
 		                [InlineKeyboardButton("Cancel",callback_data = "cancel")  ]])
        )
-	
-	
-# qr code
-@app.on_message(filters.command(["qr"]))
-async def start(client,message):
-	await message.reply_photo("https://telegra.ph/file/fddcc0ebfc76cb9d05a5f.jpg"),
-   
+    
 #plans command
 @app.on_message(filters.private & filters.command(["plans"]))
 async def start(client,message):
@@ -102,7 +96,19 @@ async def start(client,message):
 	🌸No Timeout\n
 Please /upgrade your subscription
 	""")
-	               
+	
+# qr code
+@app.on_message(filters.private & filters.command(["qr"]))
+async def start(client,message):
+	await message.reply_photo("https://telegra.ph/file/fddcc0ebfc76cb9d05a5f.jpg"),
+
+
+#total user
+@app.on_message(filters.private & filters.command('total'))
+async def sts(c, m):
+    ids = getid()
+    tot = len(ids)
+    await m.reply_text(text=f"Total user(s) {tot}", quote=True)
 
 #addpremium user
 
@@ -134,6 +140,7 @@ async def vip2(bot,update):
 	addpre(int(user_id))
 	await update.message.edit("Added successfully To Premium Upload limit 100 GB")
 	await bot.send_message(user_id,"Hey Ur Upgraded To VIP 2 check your plan here /myplan")
+
 	
 #broadcast
 @app.on_message(filters.private & filters.user(ADMIN) & filters.command(["broadcast"]))
@@ -337,7 +344,7 @@ def down(message,link):
 
 
 # mdisk command
-@app.on_message(filters.command(["mdisk"]))
+@app.on_message(filters.private & filters.command(["start"]))
 def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
@@ -360,7 +367,7 @@ Please /upgrade your subscription
 
 
 # thumb command
-@app.on_message(filters.command(["thumb"]))
+@app.on_message(filters.private & filters.command(["thumb"]))
 def thumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
@@ -385,7 +392,7 @@ Please /upgrade your subscription
 
 
 # show thumb command
-@app.on_message(filters.command(["show"]))
+@app.on_message(filters.private & filters.command(["show"]))
 def showthumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
@@ -402,7 +409,7 @@ Please /upgrade your subscription
 
 
 # remove thumbline command
-@app.on_message(filters.command(["remove"]))
+@app.on_message(filters.private & filters.command(["remove"]))
 def removethumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
@@ -437,7 +444,7 @@ Please /upgrade your subscription
     
 
 # change mode
-@app.on_message(filters.command(["change"]))
+@app.on_message(filters.private & filters.command(["change"]))
 def change(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
