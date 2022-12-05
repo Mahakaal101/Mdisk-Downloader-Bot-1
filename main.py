@@ -80,7 +80,7 @@ async def start(client,message):
 	""",reply_to_message_id = message.id ,  
 	reply_markup=InlineKeyboardMarkup([[ 
         			InlineKeyboardButton("ADMIN 🛂",url = "https://t.me/Aaajats")], 
-        			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4405")],
+        			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4406")],
 		                [InlineKeyboardButton("Cancel",callback_data = "cancel")  ]])
        )
     
