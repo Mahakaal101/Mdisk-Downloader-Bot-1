@@ -83,7 +83,13 @@ async def start(client,message):
         			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4406")],
 		                [InlineKeyboardButton("Cancel",callback_data = "cancel")  ]])
        )
-    
+	
+	
+# qr code
+@app.on_message(filters.command(["qr"]))
+async def start(client,message):
+	await message.reply_photo("https://telegra.ph/file/fddcc0ebfc76cb9d05a5f.jpg"),
+   
 #plans command
 @app.on_message(filters.private & filters.command(["plans"]))
 async def start(client,message):
