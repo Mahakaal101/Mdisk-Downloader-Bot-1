@@ -75,7 +75,8 @@ async def start(client,message):
 	🌸Daily  Upload  limit Unlimited\n
 	🌸Price Rs 40 🇮🇳/🌎 1$  per Month__
 	
-	💸Pay Using Upi I'd ultrabots.famc@idfcbank\n
+	💸Pay Using Upi I'd \nultrabots.famc@idfcbank\n
+	💸Pay Using qr code send /qr command\n
 	💸After Payment Send Screenshots Of\nPayment To Admin
 	""",reply_to_message_id = message.id ,  
 	reply_markup=InlineKeyboardMarkup([[ 
