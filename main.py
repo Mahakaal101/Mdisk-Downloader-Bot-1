@@ -25,7 +25,7 @@ from helper.progress import humanbytes
 from helper.date import add_date ,check_expi
 from pyrogram.file_id import FileId
 from helper.database import daily as daily_ ,uploadlimit,usertype,addpre,find_one,used_limit,getid,delete,insert,find_one,usertype,addpredata
-ADMIN = int(os.environ.get("ADMIN", 5410723702))
+ADMIN = int(os.environ.get("ADMIN", 1864861524))
 from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 
 
@@ -81,7 +81,7 @@ async def start(client,message):
 	""",reply_to_message_id = message.id ,  
 	reply_markup=InlineKeyboardMarkup([[ 
         			InlineKeyboardButton("ADMIN 🛂",url = "https://t.me/Aaajats")], 
-        			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4405")],
+        			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4406")],
 		                [InlineKeyboardButton("Cancel",callback_data = "cancel")  ]])
        )
     
