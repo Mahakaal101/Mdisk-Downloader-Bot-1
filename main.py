@@ -13,7 +13,6 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.types import ( InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 import humanize
 from upgrade import upgrade
-from database.access import clinton
 import mdisk
 import extras
 import mediainfo
