@@ -6,6 +6,7 @@ import time
 import pyrogram
 from pyrogram import Client
 from pyrogram import filters
+from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
 from pyrogram.errors import FloodWait
 import asyncio
@@ -13,6 +14,7 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.types import ( InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 import humanize
 from upgrade import upgrade
+from database.access import clinton
 import mdisk
 import extras
 import mediainfo
@@ -22,10 +24,11 @@ import datetime
 from datetime import timedelta, date ,datetime
 from datetime import date as date_
 from helper.progress import humanbytes
+from helper.progress import progress
 from helper.date import add_date ,check_expi
 from pyrogram.file_id import FileId
 from helper.database import daily as daily_ ,uploadlimit,usertype,addpre,find_one,used_limit,getid,delete,insert,find_one,usertype,addpredata
-ADMIN = int(os.environ.get("ADMIN", 1864861524))
+ADMIN = int(os.environ.get("ADMIN", 17737898))
 from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 
 
@@ -35,11 +38,14 @@ api_hash = os.environ.get("HASH", "ad762fe0516f367115ba651d929cf429")
 api_id = os.environ.get("ID", "17737898")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
 
+# preiumum
+from split import ss, temp_channel, isPremmium
+if isPremmium: acc = Client("myacc", api_id=api_id, api_hash=api_hash, session_string=ss)
 
 # optionals
 auth = os.environ.get("AUTH", "623741973,1864861524,5076949930,5215205205,1787835645,306027849,683684279,1406840926,1667559069,597718002,1843393081,5316294458,721234444,5290630238,839291568,598394386,1606667548,1740456929,5634994558,1764976688,1051220816,915679851,5410723702,1335978271,1845343032,1252277288,5226656959,507644392,1198027788,981149750,5058416849,5016754348,904971137,1911731554,1838349598,631028443,1740456929,5674356680,2083663200,5515158923,1057959919,941092630,5397438805,809970451,859879486,1303200779,1324651168,240296058,1252277288,635819536,5490092364,1726415542,5104293442,5135693898,1113744454")
 ban = os.environ.get("BAN", "")
-
+from mdisk import iswin
 
 # start command
 @app.on_message(filters.private & filters.command(["start"]))
@@ -84,7 +90,7 @@ async def start(client,message):
         			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4406")],
 		                [InlineKeyboardButton("Cancel",callback_data = "cancel")  ]])
        )
-    
+
 #plans command
 @app.on_message(filters.private & filters.command(["plans"]))
 async def start(client,message):
@@ -197,7 +203,14 @@ async def start(client,message):
 	else:
 	    await message.reply(text,quote=True)
 
-			 
+
+#about
+
+@app.on_message(filters.private & filters.command(["about"]))
+async def start(client,message):
+	await message.reply_text("📛 My Name : @renamerprov2_bot\n\n👨‍💻Creater :- @ajak4405\n\n🧿 Language :Python 3.10.8\n\n📢 Framework :Pyrogram 2.0.63\n\n🤖 Bot Server : VPS")
+
+
 # check for user access
 def checkuser(message):
     if auth != "" or ban != "":
@@ -226,18 +239,21 @@ def status(folder,message,fsize):
     
     time.sleep(3)
     while os.path.exists(folder + "/" ):
-        result = subprocess.run(["du", "-hs", f"{folder}/"], capture_output=True, text=True)
-        size = result.stdout[:-(length+2)]
+        if iswin == "0":
+            result = subprocess.run(["du", "-hs", f"{folder}/"], capture_output=True, text=True)
+            size = result.stdout[:-(length+2)]
+        else:
+            os.system(f"dir /a/s {folder} > tempS-{message.id}.txt")
+            size = str(int(open(f"tempS-{message.id}.txt","r").readlines()[-2].split()[2].replace(",","")) // 1000000) + "MB "
+
         try:
             app.edit_message_text(message.chat.id, message.id, f"__Downloaded__ : **{size} **__of__**  {fsize:.1f}M**")
             time.sleep(10)
         except:
             time.sleep(5)
-#about
 
-@app.on_message(filters.private & filters.command(["about"]))
-async def start(client,message):
-	await message.reply_text("📛 My Name : @renamerprov2_bot\n\n👨‍💻Creater :- @ajak4405\n\n🧿 Language :Python 3.10.8\n\n📢 Framework :Pyrogram 2.0.63\n\n🤖 Bot Server : VPS")
+    if iswin != "0": os.remove(f"tempS-{message.id}.txt")
+
 
 # upload status
 def upstatus(statusfile,message):
@@ -325,13 +341,18 @@ def down(message,link):
 
         # actuall upload
         if info == "V":
-                thumb,duration,width,height = mediainfo.allinfo(ele,thumbfile)
-                app.send_video(message.chat.id, video=ele, caption=f"{partt}**{filename}**", thumb=thumb, duration=duration, height=height, width=width, reply_to_message_id=message.id, progress=progress, progress_args=[message])
-                if "-thumb.jpg" not in thumb:
-                    os.remove(thumb)
+            thumb,duration,width,height = mediainfo.allinfo(ele,thumbfile)
+            if not isPremmium : app.send_video(message.chat.id, video=ele, caption=f"{partt}**{filename}**", thumb=thumb, duration=duration, height=height, width=width, reply_to_message_id=message.id, progress=progress, progress_args=[message])
+            else:
+                with acc: tmsg = acc.send_video(temp_channel, video=ele, caption=f"{partt}**{filename}**", thumb=thumb, duration=duration, height=height, width=width, progress=progress, progress_args=[message])
+                app.copy_message(message.chat.id, temp_channel, tmsg.id, reply_to_message_id=message.id)
+            if "-thumb.jpg" not in thumb: os.remove(thumb)
         else:
-                app.send_document(message.chat.id, document=ele, caption=f"{partt}**{filename}**", thumb=thumbfile, force_document=True, reply_to_message_id=message.id, progress=progress, progress_args=[message])
-        
+            if not isPremmium : app.send_document(message.chat.id, document=ele, caption=f"{partt}**{filename}**", thumb=thumbfile, force_document=True, reply_to_message_id=message.id, progress=progress, progress_args=[message])
+            else:
+                with acc: tmsg = acc.send_document(temp_channel, document=ele, thumb=thumbfile, caption=f"{partt}**{filename}**", force_document=True, progress=progress, progress_args=[message])
+                app.copy_message(message.chat.id, temp_channel, tmsg.id, reply_to_message_id=message.id)
+       
         # deleting uploaded file
         os.remove(ele)
         
@@ -344,7 +365,7 @@ def down(message,link):
 
 
 # mdisk command
-@app.on_message(filters.private & filters.command(["start"]))
+@app.on_message(filters.private & filters.command(["mdisk"]))
 def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
     if not checkuser(message):
@@ -474,11 +495,17 @@ def multilinks(message,links):
 @app.on_message(filters.text)
 def mdisktext(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     
+    if isPremmium and message.chat.id == temp_channel: return
+
     if not checkuser(message):
         app.send_message(message.chat.id, """
 	Your ARE NOT A PAID USER\n
 Please /upgrade your subscription
 	""",reply_to_message_id=message.id)
+        return
+
+    if message.text[0] == "/":
+        app.send_message(message.chat.id, '**See __/help__**',reply_to_message_id=message.id)
         return
 
     if "https://mdisk.me/" in message.text:
