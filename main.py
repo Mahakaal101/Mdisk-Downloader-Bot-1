@@ -22,7 +22,6 @@ import datetime
 from datetime import timedelta, date ,datetime
 from datetime import date as date_
 from helper.progress import humanbytes
-from helper.progress import progress
 from helper.date import add_date ,check_expi
 from pyrogram.file_id import FileId
 from helper.database import daily as daily_ ,uploadlimit,usertype,addpre,find_one,used_limit,getid,delete,insert,find_one,usertype,addpredata
