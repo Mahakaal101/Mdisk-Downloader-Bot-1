@@ -5,7 +5,7 @@ from math import ceil
 import os
 
 # premium account
-temp_channel = os.environ.get("TEMP_CHAT", "-1001631059705")
+temp_channel = os.environ.get("TEMP_CHAT", "-1001662444881")
 try: temp_channel = int(temp_channel)
 except: pass
 ss = os.environ.get("STRING", "BQABViNNfuxHM0JZ1ikbJJTm8zTq2s2GLi44TEw1Q8Wpatcj_MFcQKmueZgIftNBeYunBLj-fj3QtdCPAsjGuJ5IVpZ2RYl09teCZ3W6AKmz9IRiKPRU2wgSbO20GdJF3XSqZxkf3joTZSrb0npoJBflAt9b1YhkhkJT2RkqKuIFum5oOhentMuKQP0EikFk5jG8Ebk5Uy0yAifgnnLk1QUWHJ4OuLf_hFLNKYQAfqX1prPrBIAMpLM_Q40pl6P-y4iYfjAE9ow5AchYZiWjQTKmBkM7dsoTgUkT8Lo5kC6pXqPk-zGGy8KXLOI8UVOjaOlXuNuWe9yEpDxl8TQ7tcJCAAAAAG8nh1QA")
