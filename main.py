@@ -6,7 +6,6 @@ import time
 import pyrogram
 from pyrogram import Client
 from pyrogram import filters
-from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
 from pyrogram.errors import FloodWait
 import asyncio
