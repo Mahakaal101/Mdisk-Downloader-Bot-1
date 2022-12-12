@@ -6,3 +6,4 @@ pymongo
 dnspython
 asyncio
 humanize
+motor[srv]
