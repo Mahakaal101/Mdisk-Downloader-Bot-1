@@ -26,9 +26,9 @@ from helper.date import add_date ,check_expi
 from pyrogram.file_id import FileId
 from helper.database import Database
 from helper.database import daily as daily_ ,uploadlimit,usertype,addpre,find_one,used_limit,getid,delete,insert,find_one,usertype,addpredata
-ADMIN = int(os.environ.get("ADMIN", 17737898))
+ADMIN = int(os.environ.get("ADMIN", 1864861524))
 from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
-OWNER = set(int(x) for x in os.environ.get("OWNER", "17737898").split())
+OWNER = set(int(x) for x in os.environ.get("OWNER", "1864861524").split())
 DB_NAME = os.environ.get("DB_NAME","amiami")
 DB_URL = os.environ.get("DB_URL","mongodb+srv://amit:amit@cluster0.1je0krd.mongodb.net/?retryWrites=true&w=majority")
 db = Database(DB_URL, DB_NAME)
