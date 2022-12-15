@@ -24,14 +24,10 @@ from datetime import date as date_
 from helper.progress import humanbytes
 from helper.date import add_date ,check_expi
 from pyrogram.file_id import FileId
-from helper.database import Database
 from helper.database import daily as daily_ ,uploadlimit,usertype,addpre,find_one,used_limit,getid,delete,insert,find_one,usertype,addpredata
-ADMIN = int(os.environ.get("ADMIN", 1864861524))
+ADMIN = int(os.environ.get("ADMIN", 17737898))
 from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
-OWNER = set(int(x) for x in os.environ.get("OWNER", "1864861524").split())
-DB_NAME = os.environ.get("DB_NAME","amiami")
-DB_URL = os.environ.get("DB_URL","mongodb+srv://amit:amit@cluster0.1je0krd.mongodb.net/?retryWrites=true&w=majority")
-db = Database(DB_URL, DB_NAME)
+
 
 # app
 bot_token = os.environ.get("TOKEN", "5562266381:AAGY7bhPnRC62qbYegRxnCGSo6eUQPlx_OI") 
@@ -44,7 +40,7 @@ from split import ss, temp_channel, isPremmium
 if isPremmium: acc = Client("myacc", api_id=api_id, api_hash=api_hash, session_string=ss)
 
 # optionals
-auth = os.environ.get("AUTH", "623741973,1864861524,5076949930,306027849,683684279,1667559069,1843393081,5316294458,721234444,5290630238,839291568,598394386,1606667548,1740456929,5634994558,1764976688,1051220816,915679851,5410723702,1335978271,1252277288,5226656959,507644392,1198027788,981149750,5016754348,904971137,1911731554,1838349598,631028443,1740456929,5674356680,2083663200,5515158923,1057959919,5397438805,809970451,859879486,1303200779,240296058,1252277288,635819536,5490092364,1726415542,5104293442,5135693898,1113744454,414315974,963634341,683889832,910898801,5565512653,5580289036,817785442,5020113494,748720772,1278611015,947623302,554101425,1053140055,1839169012")
+auth = os.environ.get("AUTH", "623741973,1864861524,5076949930,306027849,683684279,1667559069,597718002,1843393081,5316294458,721234444,5290630238,839291568,598394386,1606667548,1740456929,5634994558,1764976688,1051220816,915679851,5410723702,1335978271,1252277288,5226656959,507644392,1198027788,981149750,5016754348,904971137,1911731554,1838349598,631028443,1740456929,5674356680,2083663200,5515158923,1057959919,5397438805,809970451,859879486,1303200779,1324651168,240296058,1252277288,635819536,5490092364,1726415542,5104293442,5135693898,1113744454,414315974,963634341,683889832,910898801,5565512653,5580289036,817785442,5020113494,748720772,1278611015,5285296040")
 ban = os.environ.get("BAN", "")
 from mdisk import iswin
 
@@ -148,46 +144,7 @@ async def vip2(bot,update):
 	await update.message.edit("Added successfully To Premium Upload limit 100 GB")
 	await bot.send_message(user_id,"Hey Ur Upgraded To VIP 2 check your plan here /myplan")
 
-#notify a user  
-@app.on_message(filters.private & filters.command("over"))
-async def over(c, m):
-    if m.from_user.id not in OWNER:
-        await m.delete()
-        return
-    if len(m.command) == 1:
-        await m.reply_text(
-            f"Use this command to ban 🛑 any user from the bot 🤖.\n\nUsage:\n\n`/ban_user user_id ban_duration ban_reason`\n\nEg: `/ban_user 1234567 28 You misused me.`\n This will ban user with id `1234567` for `28` days for the reason `You misused me`.",
-            quote=True,
-        )
-        return
-
-    try:
-        user_id = int(m.command[1])
-        ban_duration = int(m.command[2])
-        ban_reason = " ".join(m.command[3:])
-        ban_log_text = f"Banning user {user_id} for {ban_duration} days for the reason {ban_reason}."
-
-        try:
-            await c.send_message(
-                user_id,
-                f"Your subscription is over 🚫 to use this bot /upgrade your plan \n\n**Message from the admin 🤠**",
-            )
-            ban_log_text += "\n\nUser notified successfully!"
-        except BaseException:
-            traceback.print_exc()
-            ban_log_text += (
-                f"\n\n ⚠️ User notification failed! ⚠️ \n\n`{traceback.format_exc()}`"
-            )
-        await db.ban_user(user_id, ban_duration, ban_reason)
-        print(ban_log_text)
-        await m.reply_text(ban_log_text, quote=True)
-    except BaseException:
-        traceback.print_exc()
-        await m.reply_text(
-            f"Error occoured ⚠️! Traceback given below\n\n`{traceback.format_exc()}`",
-            quote=True
-        )
-
+	
 #broadcast
 @app.on_message(filters.private & filters.user(ADMIN) & filters.command(["broadcast"]))
 async def broadcast(bot, message):
