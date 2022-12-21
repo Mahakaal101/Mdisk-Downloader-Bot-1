@@ -52,9 +52,13 @@ async def start(client,message):
 	    id = message.text.split(' ')[1]
 	except:
 	    await message.reply_text(text =f"""
-Sorry new registration is now closed""",reply_to_message_id = message.id ,  
+Hi {message.from_user.first_name } 👋
+I'm Paid Mdisk Uploader Bot 🚀\nPermanent Thumbnail Support💯\n
+Send me a Mdisk link and \nI will upload it to telegram as a file/video.\n
+Please /upgrade Your Subscription
+	""",reply_to_message_id = message.id ,  
 	reply_markup=InlineKeyboardMarkup( [[
-           InlineKeyboardButton("👼 𝙳𝙴𝚅𝚂 👼", url='https://t.me/A')
+           InlineKeyboardButton("👼 𝙳𝙴𝚅𝚂 👼", url='https://t.me/Aaajats')
            ],[
            InlineKeyboardButton('📢 𝚄𝙿𝙳𝙰𝚃𝙴𝚂', url='https://t.me/anumitultrabots'),
            InlineKeyboardButton('🍂 𝚂𝚄𝙿𝙿𝙾𝚁𝚃', url='https://t.me/anumitultrabots')
@@ -69,9 +73,17 @@ Sorry new registration is now closed""",reply_to_message_id = message.id ,
 @app.on_message(filters.private & filters.command(["upgrade"]))
 async def start(client,message):
 	await message.reply_text(text =f"""
-Sorry new registration is now closed""",reply_to_message_id = message.id ,  
+	Hello \n
+	🛡️ PLAN 🛡️\n
+	🌸Daily  Upload  limit Unlimited\n
+	🌸Price Rs 60 🇮🇳/🌎 1.5$  per Month__
+	
+	💸Pay Using Upi I'd \nultrabots.famc@idfcbank\n
+	💸Pay Using qr code send /qr command\n
+	💸After Payment Send Screenshots Of\nPayment To Admin
+	""",reply_to_message_id = message.id ,  
 	reply_markup=InlineKeyboardMarkup([[ 
-        			InlineKeyboardButton("ADMIN 🛂",url = "https://t.me/Aa")], 
+        			InlineKeyboardButton("ADMIN 🛂",url = "https://t.me/Aaajats")], 
         			[InlineKeyboardButton("PayPal 🌎",url = "https://www.paypal.me/ajak4406")],
 		                [InlineKeyboardButton("Cancel",callback_data = "cancel")  ]])
        )
@@ -80,7 +92,13 @@ Sorry new registration is now closed""",reply_to_message_id = message.id ,
 @app.on_message(filters.private & filters.command(["plans"]))
 async def start(client,message):
 	await message.reply_text("""
-Sorry new registration is now closed""")
+	PAID PLANS AVAILABLE\n
+	🛡️ PLAN 🛡️\n
+	🌸Daily  Upload  limit Unlimited
+	🌸Price Rs 40 🇮🇳/🌎 1$  per Month__
+	🌸No Timeout\n
+Please /upgrade your subscription
+	""")
 	
 # qr code
 @app.on_message(filters.private & filters.command(["qr"]))
@@ -349,7 +367,9 @@ def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_a
     
     if not checkuser(message):
         app.send_message(message.chat.id, """
-	Sorry new registration is now closed""",reply_to_message_id=message.id)
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
 
     try:
@@ -395,7 +415,9 @@ def showthumb(client: pyrogram.client.Client, message: pyrogram.types.messages_a
     
     if not checkuser(message):
         app.send_message(message.chat.id, """
-	Sorry new registration is now closed""",reply_to_message_id=message.id)
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
     
     if os.path.exists(f'{message.from_user.id}-thumb.jpg'):
@@ -410,7 +432,8 @@ def removethumb(client: pyrogram.client.Client, message: pyrogram.types.messages
     
     if not checkuser(message):
         app.send_message(message.chat.id, """
-	Sorry new registration is now closed
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
 	""",reply_to_message_id=message.id)
         return
     
@@ -428,7 +451,8 @@ def ptumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_m
     
     if not checkuser(message):
         app.send_message(message.chat.id, """
-	Sorry new registration is now closed
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
 	""",reply_to_message_id=message.id)
         return
     
@@ -443,7 +467,9 @@ def change(client: pyrogram.client.Client, message: pyrogram.types.messages_and_
     
     if not checkuser(message):
         app.send_message(message.chat.id, """
-	Sorry new registration is now closed""",reply_to_message_id=message.id)
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
     
     info = extras.getdata(str(message.from_user.id))
@@ -470,7 +496,9 @@ def mdisktext(client: pyrogram.client.Client, message: pyrogram.types.messages_a
 
     if not checkuser(message):
         app.send_message(message.chat.id, """
-	Sorry new registration is now closed""",reply_to_message_id=message.id)
+	Your ARE NOT A PAID USER\n
+Please /upgrade your subscription
+	""",reply_to_message_id=message.id)
         return
 
     if message.text[0] == "/":
