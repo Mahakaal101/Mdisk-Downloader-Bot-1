@@ -25,14 +25,14 @@ from helper.progress import humanbytes
 from helper.date import add_date ,check_expi
 from pyrogram.file_id import FileId
 from helper.database import daily as daily_ ,uploadlimit,usertype,addpre,find_one,used_limit,getid,delete,insert,find_one,usertype,addpredata
-ADMIN = int(os.environ.get("ADMIN", 1864861524))
+ADMIN = int(os.environ.get("ADMIN", 5104293442))
 from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 
 
 # app
-bot_token = os.environ.get("TOKEN", "5562266381:AAGY7bhPnRC62qbYegRxnCGSo6eUQPlx_OI") 
-api_hash = os.environ.get("HASH", "ad762fe0516f367115ba651d929cf429") 
-api_id = os.environ.get("ID", "17737898")
+bot_token = os.environ.get("TOKEN", "5591577616:AAHUE8cMGXAVvJmRdBSwr1Jsfpz4Ltt93LU") 
+api_hash = os.environ.get("HASH", "016d5e115a06ddfb6121823d72ae4d8c") 
+api_id = os.environ.get("ID", "15823382")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
 
 # preiumum
@@ -40,7 +40,7 @@ from split import ss, temp_channel, isPremmium
 if isPremmium: acc = Client("myacc", api_id=api_id, api_hash=api_hash, session_string=ss)
 
 # optionals
-auth = os.environ.get("AUTH", "623741973,1864861524,5076949930,683684279,5316294458,5290630238,598394386,5410723702,1335978271,1198027788,5515158923,809970451,1303200779,240296058,635819536,1726415542,5135693898,1113744454,414315974,963634341,683889832,910898801,5565512653,5580289036,817785442,5020113494,748720772,1278611015,5285296040,5307413215,1335978271,1382643117,5092328246,1053140055,923184534,1024155122,5207149801,947623302,5099967725,1312881543,1667559069,891836729,1057959919,721234444,1838349598,2083663200,540828579,5255735308,5072829406,672148918,1088084047,1222974251,5568598812,617534770,5452354891")
+auth = os.environ.get("AUTH", "1291288382,1296213694,5104293442,5201973365")
 ban = os.environ.get("BAN", "")
 from mdisk import iswin
 
