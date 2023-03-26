@@ -30,7 +30,7 @@ from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,ForceRepl
 
 
 # app
-bot_token = os.environ.get("TOKEN", "5591577616:AAHUE8cMGXAVvJmRdBSwr1Jsfpz4Ltt93LU") 
+bot_token = os.environ.get("TOKEN", "5829923130:AAGmVfRFJ4HIjTLNKO2BGj5u3iwa0_8WtD8") 
 api_hash = os.environ.get("HASH", "016d5e115a06ddfb6121823d72ae4d8c") 
 api_id = os.environ.get("ID", "15823382")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
